@@ -5,7 +5,7 @@ namespace WeatherForecastClient.Models;
 public class Error
 {
     [JsonPropertyName("cod")]
-    public int Code { get; set; }
+    public string Code { get; set; } = null!;
 
     public string Message { get; set; } = null!;
 }
