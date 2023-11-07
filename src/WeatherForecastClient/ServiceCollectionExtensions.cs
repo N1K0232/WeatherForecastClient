@@ -87,9 +87,6 @@ public static class ServiceCollectionExtensions
             TimeSpan.FromSeconds(10)
         }));
 
-        services.AddTransient<TransientErrorDelegatingHandler>();
-        services.AddHttpClient("http").AddHttpMessageHandler<TransientErrorDelegatingHandler>();
-
         services.AddMemoryCache();
         services.AddSingleton<IWeatherForecastCache, WeatherForecastCache>();
 
