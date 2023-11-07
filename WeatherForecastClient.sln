@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6501538D-F45
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecastClient", "src\WeatherForecastClient\WeatherForecastClient.csproj", "{FACA6507-3298-423A-A492-C0F2577532E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecastWebApi", "samples\WeatherForecastWebApi\WeatherForecastWebApi.csproj", "{469CA37E-F28F-43CD-8AA6-C2FBB6237FC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,11 +26,19 @@ Global
 		{FACA6507-3298-423A-A492-C0F2577532E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FACA6507-3298-423A-A492-C0F2577532E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FACA6507-3298-423A-A492-C0F2577532E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{469CA37E-F28F-43CD-8AA6-C2FBB6237FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{469CA37E-F28F-43CD-8AA6-C2FBB6237FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{469CA37E-F28F-43CD-8AA6-C2FBB6237FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{469CA37E-F28F-43CD-8AA6-C2FBB6237FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FACA6507-3298-423A-A492-C0F2577532E6} = {6501538D-F457-421F-9E0F-D2E91D59BB7F}
+		{469CA37E-F28F-43CD-8AA6-C2FBB6237FC7} = {0138DD06-325D-4826-8CEF-E1135A118714}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2754CF7-FB93-439A-B009-077583046B3A}
 	EndGlobalSection
 EndGlobal
