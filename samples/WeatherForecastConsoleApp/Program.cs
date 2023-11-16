@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WeatherForecastClient;
+using WeatherForecastClient.Extensions;
 using WeatherForecastConsoleApp;
 
 var host = Host.CreateDefaultBuilder(args)

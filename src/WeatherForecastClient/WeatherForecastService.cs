@@ -10,11 +10,11 @@ public class WeatherForecastService : IWeatherForecastService
     private readonly IWeatherForecastCache cache;
     private readonly ILogger<WeatherForecastService> logger;
 
-    public WeatherForecastService(IOpenWeatherMapApi client,
+    public WeatherForecastService(IOpenWeatherMapApi openWeatherMapApi,
         IWeatherForecastCache cache,
         ILogger<WeatherForecastService> logger)
     {
-        this.openWeatherMapApi = client;
+        this.openWeatherMapApi = openWeatherMapApi;
         this.cache = cache;
         this.logger = logger;
     }
@@ -37,7 +37,7 @@ public class WeatherForecastService : IWeatherForecastService
         }
         else
         {
-            await cache.SetAsync(city, response, TimeSpan.FromMinutes(1), cancellationToken);
+            await cache.SetAsync(city, response, TimeSpan.FromHours(1), cancellationToken);
         }
 
         return response;

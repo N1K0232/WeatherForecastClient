@@ -1,4 +1,4 @@
-using WeatherForecastClient;
+using WeatherForecastClient.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

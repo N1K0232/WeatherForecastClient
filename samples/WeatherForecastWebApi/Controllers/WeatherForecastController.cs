@@ -1,6 +1,7 @@
 using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using WeatherForecastClient;
+using WeatherForecastClient.Models;
 
 namespace WeatherForecastWebApi.Controllers;
 
@@ -20,11 +21,12 @@ public class WeatherForecastController : ControllerBase
     public async Task<IActionResult> Search(string city)
     {
         var response = await weatherForecastClient.SearchAsync(city);
-        if (response.IsSuccess)
+        if (response.IsSuccessStatusCode)
         {
-            return Ok(response.CurrentWeather);
+            return Ok(response.Content);
         }
 
-        return StatusCode(response.Error!.Code, response.Error!.Message);
+        var error = await response.Error.GetContentAsAsync<Error>();
+        return StatusCode(Convert.ToInt32(error!.Code), error.Message);
     }
 }

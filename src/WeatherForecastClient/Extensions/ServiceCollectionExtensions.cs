@@ -5,7 +5,7 @@ using Polly;
 using Refit;
 using WeatherForecastClient.Handlers;
 
-namespace WeatherForecastClient;
+namespace WeatherForecastClient.Extensions;
 
 public static class ServiceCollectionExtensions
 {

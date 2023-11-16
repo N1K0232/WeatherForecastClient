@@ -17,9 +17,9 @@ public class Application
         var city = Console.ReadLine() ?? string.Empty;
 
         var weatherResponse = await weatherForecastClient.SearchAsync(city);
-        if (weatherResponse.IsSuccess)
+        if (weatherResponse.IsSuccessStatusCode)
         {
-            Console.WriteLine(weatherResponse.CurrentWeather!.Name);
+            Console.WriteLine(weatherResponse.Content.Name);
         }
 
         Console.ReadLine();
