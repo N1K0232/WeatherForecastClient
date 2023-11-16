@@ -1,22 +1,25 @@
-﻿namespace WeatherForecastClient.Models;
+﻿using System.Linq;
 
-public class Weather
+namespace WeatherForecastClient.Models
 {
-    public Weather(CurrentWeather currentWeather)
+    public class Weather
     {
-        CityName = currentWeather.Name;
-        Condition = currentWeather.Conditions.First().Description;
-        ConditionIcon = currentWeather.Conditions.First().ConditionIcon;
-        Temperature = currentWeather.Detail.Temperature;
+        public Weather(CurrentWeather currentWeather)
+        {
+            CityName = currentWeather.Name;
+            Condition = currentWeather.Conditions.First().Description;
+            ConditionIcon = currentWeather.Conditions.First().ConditionIcon;
+            Temperature = currentWeather.Detail.Temperature;
+        }
+
+        public string CityName { get; }
+
+        public string Condition { get; }
+
+        public string ConditionIcon { get; }
+
+        public string ConditionIconUrl => $"https://openweathermap.org/img/w/{ConditionIcon}.png";
+
+        public decimal Temperature { get; }
     }
-
-    public string CityName { get; }
-
-    public string Condition { get; }
-
-    public string ConditionIcon { get; }
-
-    public string ConditionIconUrl => $"https://openweathermap.org/img/w/{ConditionIcon}.png";
-
-    public decimal Temperature { get; }
 }

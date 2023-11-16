@@ -1,23 +1,26 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using WeatherForecastClient.Converters;
 
-namespace WeatherForecastClient.Models;
-
-public class ForecastWeatherData
+namespace WeatherForecastClient.Models
 {
-    [JsonPropertyName("dt")]
-    [JsonConverter(typeof(UnixToDateTimeConverter))]
-    public DateTime Date { get; set; }
+    public class ForecastWeatherData
+    {
+        [JsonPropertyName("dt")]
+        [JsonConverter(typeof(UnixToDateTimeConverter))]
+        public DateTime Date { get; set; }
 
-    [JsonPropertyName("main")]
-    public ForecastWeatherDetail WeatherDetail { get; set; } = null!;
+        [JsonPropertyName("main")]
+        public ForecastWeatherDetail WeatherDetail { get; set; } = null!;
 
-    [JsonPropertyName("weather")]
-    public IEnumerable<WeatherCondition> Conditions { get; set; } = null!;
+        [JsonPropertyName("weather")]
+        public IEnumerable<WeatherCondition> Conditions { get; set; } = null!;
 
-    [JsonPropertyName("clouds")]
-    public Clouds Clouds { get; set; } = null!;
+        [JsonPropertyName("clouds")]
+        public Clouds Clouds { get; set; } = null!;
 
-    [JsonPropertyName("wind")]
-    public Wind Wind { get; set; } = null!;
+        [JsonPropertyName("wind")]
+        public Wind Wind { get; set; } = null!;
+    }
 }

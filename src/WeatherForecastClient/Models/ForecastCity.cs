@@ -1,15 +1,16 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace WeatherForecastClient.Models;
-
-public class ForecastCity
+namespace WeatherForecastClient.Models
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
+    public class ForecastCity
+    {
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
 
-    [JsonPropertyName("name")]
-    public string Name { get; set; } = null!;
+        [JsonPropertyName("name")]
+        public string Name { get; set; } = null!;
 
-    [JsonPropertyName("country")]
-    public string Country { get; set; } = null!;
+        [JsonPropertyName("country")]
+        public string Country { get; set; } = null!;
+    }
 }

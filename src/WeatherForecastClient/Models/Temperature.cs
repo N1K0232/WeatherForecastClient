@@ -1,24 +1,25 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace WeatherForecastClient.Models;
-
-public class Temperature
+namespace WeatherForecastClient.Models
 {
-    [JsonPropertyName("day")]
-    public decimal Day { get; set; }
+    public class Temperature
+    {
+        [JsonPropertyName("day")]
+        public decimal Day { get; set; }
 
-    [JsonPropertyName("min")]
-    public decimal Min { get; set; }
+        [JsonPropertyName("min")]
+        public decimal Min { get; set; }
 
-    [JsonPropertyName("max")]
-    public decimal Max { get; set; }
+        [JsonPropertyName("max")]
+        public decimal Max { get; set; }
 
-    [JsonPropertyName("night")]
-    public decimal Night { get; set; }
+        [JsonPropertyName("night")]
+        public decimal Night { get; set; }
 
-    [JsonPropertyName("eve")]
-    public decimal Evening { get; set; }
+        [JsonPropertyName("eve")]
+        public decimal Evening { get; set; }
 
-    [JsonPropertyName("morn")]
-    public decimal Morning { get; set; }
+        [JsonPropertyName("morn")]
+        public decimal Morning { get; set; }
+    }
 }

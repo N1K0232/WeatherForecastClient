@@ -1,21 +1,22 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace WeatherForecastClient.Models;
-
-public class ForecastWeatherDetail
+namespace WeatherForecastClient.Models
 {
-    [JsonPropertyName("temp")]
-    public decimal Temperature { get; set; }
+    public class ForecastWeatherDetail
+    {
+        [JsonPropertyName("temp")]
+        public decimal Temperature { get; set; }
 
-    [JsonPropertyName("pressure")]
-    public double Pressure { get; set; }
+        [JsonPropertyName("pressure")]
+        public double Pressure { get; set; }
 
-    [JsonPropertyName(("sea_level"))]
-    public double SeaLevel { get; set; }
+        [JsonPropertyName(("sea_level"))]
+        public double SeaLevel { get; set; }
 
-    [JsonPropertyName("grnd_level")]
-    public double GroundLevel { get; set; }
+        [JsonPropertyName("grnd_level")]
+        public double GroundLevel { get; set; }
 
-    [JsonPropertyName("humidity")]
-    public int Humidity { get; set; }
+        [JsonPropertyName("humidity")]
+        public int Humidity { get; set; }
+    }
 }

@@ -1,32 +1,38 @@
-﻿using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web;
 
-namespace WeatherForecastClient.Handlers;
-
-internal class QueryStringInjectorHttpMessageHandler : DelegatingHandler
+namespace WeatherForecastClient.Handlers
 {
-    public Dictionary<string, string> Parameters { get; }
-
-    public QueryStringInjectorHttpMessageHandler(Dictionary<string, string> parameters = null, HttpMessageHandler innerHandler = null)
-          : base(innerHandler ?? new HttpClientHandler())
+    internal class QueryStringInjectorHttpMessageHandler : DelegatingHandler
     {
-        Parameters = parameters ?? new Dictionary<string, string>();
-    }
+        public IDictionary<string, string> Parameters { get; }
 
-    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        var parameters = HttpUtility.ParseQueryString(request.RequestUri!.Query);
-
-        foreach (var parameter in Parameters)
+        public QueryStringInjectorHttpMessageHandler(Dictionary<string, string>? parameters = null, HttpMessageHandler? innerHandler = null)
+              : base(innerHandler ?? new HttpClientHandler())
         {
-            parameters.Add(parameter.Key, parameter.Value);
+            Parameters = parameters ?? new Dictionary<string, string>();
         }
 
-        var uriBuilder = new UriBuilder(request.RequestUri!)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            Query = parameters.ToString()
-        };
+            var parameters = HttpUtility.ParseQueryString(request.RequestUri!.Query);
 
-        request.RequestUri = new Uri(uriBuilder.ToString());
-        return base.SendAsync(request, cancellationToken);
+            foreach (var parameter in Parameters)
+            {
+                parameters.Add(parameter.Key, parameter.Value);
+            }
+
+            var uriBuilder = new UriBuilder(request.RequestUri!)
+            {
+                Query = parameters.ToString()
+            };
+
+            request.RequestUri = new Uri(uriBuilder.ToString());
+            return base.SendAsync(request, cancellationToken);
+        }
     }
 }

@@ -1,9 +1,12 @@
-﻿using Refit;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Refit;
 using WeatherForecastClient.Models;
 
-namespace WeatherForecastClient;
-
-public interface IWeatherForecastService
+namespace WeatherForecastClient
 {
-    Task<ApiResponse<CurrentWeather>> SearchAsync(string city, CancellationToken cancellationToken = default);
+    public interface IWeatherForecastService
+    {
+        Task<ApiResponse<CurrentWeather>> SearchAsync(string city, CancellationToken cancellationToken = default);
+    }
 }

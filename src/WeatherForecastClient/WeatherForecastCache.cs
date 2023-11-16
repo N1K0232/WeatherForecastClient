@@ -1,31 +1,35 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using Refit;
 using WeatherForecastClient.Models;
 
-namespace WeatherForecastClient;
-
-internal class WeatherForecastCache : IWeatherForecastCache
+namespace WeatherForecastClient
 {
-    private readonly IMemoryCache cache;
-
-    public WeatherForecastCache(IMemoryCache cache)
+    internal class WeatherForecastCache : IWeatherForecastCache
     {
-        this.cache = cache;
-    }
+        private readonly IMemoryCache cache;
 
-    public Task<ApiResponse<CurrentWeather>?> GetAsync(string city, CancellationToken cancellationToken = default)
-    {
-        var key = $"weather-{city}";
-        var response = cache.Get<ApiResponse<CurrentWeather>>(key);
+        public WeatherForecastCache(IMemoryCache cache)
+        {
+            this.cache = cache;
+        }
 
-        return Task.FromResult(response);
-    }
+        public Task<ApiResponse<CurrentWeather>?> GetAsync(string city, CancellationToken cancellationToken = default)
+        {
+            var key = $"weather-{city}";
+            var response = cache.Get<ApiResponse<CurrentWeather>>(key);
 
-    public Task SetAsync(string city, ApiResponse<CurrentWeather> response, TimeSpan expiration, CancellationToken cancellationToken = default)
-    {
-        var key = $"weather-{city}";
-        cache.Set(key, response, expiration);
+            return Task.FromResult(response);
+        }
 
-        return Task.CompletedTask;
+        public Task SetAsync(string city, ApiResponse<CurrentWeather> response, TimeSpan expiration, CancellationToken cancellationToken = default)
+        {
+            var key = $"weather-{city}";
+            cache.Set(key, response, expiration);
+
+            return Task.CompletedTask;
+        }
     }
 }

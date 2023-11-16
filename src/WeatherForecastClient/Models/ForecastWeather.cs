@@ -1,15 +1,17 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
-namespace WeatherForecastClient.Models;
-
-public class ForecastWeather
+namespace WeatherForecastClient.Models
 {
-    [JsonPropertyName("city")]
-    public ForecastCity City { get; set; } = null!;
+    public class ForecastWeather
+    {
+        [JsonPropertyName("city")]
+        public ForecastCity City { get; set; } = null!;
 
-    [JsonPropertyName("cod")]
-    public string Code { get; set; } = null!;
+        [JsonPropertyName("cod")]
+        public string Code { get; set; } = null!;
 
-    [JsonPropertyName("list")]
-    public IEnumerable<ForecastWeatherData> WeatherData { get; set; } = null!;
+        [JsonPropertyName("list")]
+        public IEnumerable<ForecastWeatherData> WeatherData { get; set; } = null!;
+    }
 }
