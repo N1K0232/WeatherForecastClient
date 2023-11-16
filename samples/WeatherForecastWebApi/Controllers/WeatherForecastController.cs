@@ -9,9 +9,9 @@ namespace WeatherForecastWebApi.Controllers;
 [Produces(MediaTypeNames.Application.Json)]
 public class WeatherForecastController : ControllerBase
 {
-    private readonly IWeatherForecastClient weatherForecastClient;
+    private readonly IWeatherForecastService weatherForecastClient;
 
-    public WeatherForecastController(IWeatherForecastClient weatherForecastClient)
+    public WeatherForecastController(IWeatherForecastService weatherForecastClient)
     {
         this.weatherForecastClient = weatherForecastClient;
     }

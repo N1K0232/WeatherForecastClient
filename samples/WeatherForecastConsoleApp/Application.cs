@@ -4,9 +4,9 @@ namespace WeatherForecastConsoleApp;
 
 public class Application
 {
-    private readonly IWeatherForecastClient weatherForecastClient;
+    private readonly IWeatherForecastService weatherForecastClient;
 
-    public Application(IWeatherForecastClient weatherForecastClient)
+    public Application(IWeatherForecastService weatherForecastClient)
     {
         this.weatherForecastClient = weatherForecastClient;
     }

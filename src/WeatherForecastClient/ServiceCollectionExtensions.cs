@@ -61,7 +61,7 @@ public static class ServiceCollectionExtensions
     {
         var jsonOptions = jsonSerializerOptions ?? defaultJsonSerializerOptions;
 
-        services.AddRefitClient<IOpenWeatherMapApiClient>(new RefitSettings
+        services.AddRefitClient<IOpenWeatherMapApi>(new RefitSettings
         {
             ContentSerializer = new SystemTextJsonContentSerializer(jsonOptions)
         })
@@ -90,7 +90,7 @@ public static class ServiceCollectionExtensions
         services.AddMemoryCache();
         services.AddSingleton<IWeatherForecastCache, WeatherForecastCache>();
 
-        services.AddScoped<IWeatherForecastClient, WeatherForecastClient>();
+        services.AddScoped<IWeatherForecastService, WeatherForecastService>();
         return services;
     }
 }
