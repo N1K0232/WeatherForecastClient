@@ -18,7 +18,7 @@ namespace WeatherForecastClient
 
         public Task<ApiResponse<CurrentWeather>?> GetAsync(string city, CancellationToken cancellationToken = default)
         {
-            var key = $"weather-{city}";
+            string key = $"weather-{city}";
             var response = cache.Get<ApiResponse<CurrentWeather>>(key);
 
             return Task.FromResult(response);
@@ -26,7 +26,7 @@ namespace WeatherForecastClient
 
         public Task SetAsync(string city, ApiResponse<CurrentWeather> response, TimeSpan expiration, CancellationToken cancellationToken = default)
         {
-            var key = $"weather-{city}";
+            string key = $"weather-{city}";
             cache.Set(key, response, expiration);
 
             return Task.CompletedTask;

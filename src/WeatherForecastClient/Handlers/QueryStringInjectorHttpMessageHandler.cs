@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace WeatherForecastClient.Handlers
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var parameters = HttpUtility.ParseQueryString(request.RequestUri!.Query);
+            NameValueCollection parameters = HttpUtility.ParseQueryString(request.RequestUri!.Query);
 
             foreach (var parameter in Parameters)
             {

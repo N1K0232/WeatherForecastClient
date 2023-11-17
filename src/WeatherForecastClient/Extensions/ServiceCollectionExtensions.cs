@@ -110,7 +110,9 @@ namespace WeatherForecastClient.Extensions
             services.AddMemoryCache();
             services.AddSingleton<IWeatherForecastCache, WeatherForecastCache>();
 
+            services.AddScoped<IGeolocalizationService, GeolocalizationService>();
             services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+
             return services;
         }
     }
