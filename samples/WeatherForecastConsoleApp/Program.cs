@@ -14,7 +14,7 @@ void ConfigureServices(HostBuilderContext hostingContext, IServiceCollection ser
 {
     services.AddWeatherClient(options =>
     {
-        options.ApiKey = "e715cb25b6c9421afc6e16ff968e9430";
+        options.ApiKey = "";
     });
 
     services.AddSingleton<Application>();
