@@ -10,17 +10,14 @@ namespace WeatherForecastClient
     public class WeatherForecastService : IWeatherForecastService
     {
         private readonly IOpenWeatherMapApi openWeatherMapApi;
-        private readonly IGeolocalizationService geolocalizationService;
         private readonly IWeatherForecastCache cache;
         private readonly ILogger<WeatherForecastService> logger;
 
         public WeatherForecastService(IOpenWeatherMapApi openWeatherMapApi,
-            IGeolocalizationService geolocalizationService,
             IWeatherForecastCache cache,
             ILogger<WeatherForecastService> logger)
         {
             this.openWeatherMapApi = openWeatherMapApi;
-            this.geolocalizationService = geolocalizationService;
             this.cache = cache;
             this.logger = logger;
         }
