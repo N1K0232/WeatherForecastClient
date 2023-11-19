@@ -1,21 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using WeatherForecastClient.Extensions;
-using WeatherForecastConsoleApp;
+﻿using WeatherForecastClient;
 
-var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices(ConfigureServices)
-    .Build();
+Console.Write("Search weather for city: ");
+string city = Console.ReadLine() ?? string.Empty;
 
-var application = host.Services.GetRequiredService<Application>();
-await application.ExecuteAsync();
+var weatherForecastService = new WeatherForecastService();
+var response = await weatherForecastService.SearchAsync(city);
 
-void ConfigureServices(HostBuilderContext hostingContext, IServiceCollection services)
-{
-    services.AddWeatherClient(options =>
-    {
-        options.ApiKey = "";
-    });
-
-    services.AddSingleton<Application>();
-}
+Console.WriteLine(response.Content?.Name);

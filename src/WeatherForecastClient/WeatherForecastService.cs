@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Refit;
 using WeatherForecastClient.Models;
 
@@ -9,39 +10,23 @@ namespace WeatherForecastClient
 {
     public class WeatherForecastService : IWeatherForecastService
     {
-        private readonly IOpenWeatherMapApi openWeatherMapApi;
-        private readonly IWeatherForecastCache cache;
-        private readonly ILogger<WeatherForecastService> logger;
+        private HttpClient httpClient;
 
-        public WeatherForecastService(IOpenWeatherMapApi openWeatherMapApi,
-            IWeatherForecastCache cache,
-            ILogger<WeatherForecastService> logger)
+        public WeatherForecastService(string apiKey)
         {
-            this.openWeatherMapApi = openWeatherMapApi;
-            this.cache = cache;
-            this.logger = logger;
+            httpClient = new HttpClient
+            {
+                BaseAddress = new Uri("")
+            };
+
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task<ApiResponse<CurrentWeather>> SearchAsync(string city, CancellationToken cancellationToken = default)
         {
-            logger.LogInformation("Getting weather condition for {city}...", city);
-
-            var cacheResponse = await cache.GetAsync(city, cancellationToken);
-            if (cacheResponse != null)
-            {
-                logger.LogDebug("Retrieving value for {City} from cache", city);
-                return cacheResponse;
-            }
-
+            var openWeatherMapApi = RestService.For<IOpenWeatherMapApi>("https://api.openweathermap.org/data/2.5");
             var response = await openWeatherMapApi.SearchAsync(city, cancellationToken);
-            if (!response.IsSuccessStatusCode)
-            {
-                logger.LogError("Unable to retrieve weather condition: {StatusCode}", response.StatusCode);
-            }
-            else
-            {
-                await cache.SetAsync(city, response, TimeSpan.FromHours(1), cancellationToken);
-            }
 
             return response;
         }

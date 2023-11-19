@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.Json;
-using System.Threading;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
@@ -94,9 +93,6 @@ namespace WeatherForecastClient.Extensions
                 var handler = new QueryStringInjectorHttpMessageHandler();
                 handler.Parameters.Add("units", "metric");
                 handler.Parameters.Add("APPID", weatherForecastClientOptions.ApiKey);
-
-                var language = weatherForecastClientOptions.ResponseLanguage ?? Thread.CurrentThread.CurrentCulture.Name;
-                handler.Parameters.Add("lang", language);
 
                 return handler;
             })

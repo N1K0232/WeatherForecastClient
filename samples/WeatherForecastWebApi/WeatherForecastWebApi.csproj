@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\WeatherForecastClient\WeatherForecastClient.csproj" />
+    <ProjectReference Include="..\..\src\WeatherForecastClient.DependencyInjection\WeatherForecastClient.DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>

@@ -36,7 +36,7 @@ public partial class MainWindow : Window
             else
             {
                 var error = await response.Error.GetContentAsAsync<Error>();
-                MessageBox.Show($"Unable to retrieve weather codition for {CityTextBox.Text}: {error.Message}.", "Weather Client", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Unable to retrieve weather codition for {CityTextBox.Text}: {error!.Message}.", "Weather Client", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

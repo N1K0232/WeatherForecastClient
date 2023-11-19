@@ -8,7 +8,7 @@ using System.Web;
 
 namespace WeatherForecastClient.Handlers
 {
-    internal class QueryStringInjectorHttpMessageHandler : DelegatingHandler
+    public class QueryStringInjectorHttpMessageHandler : DelegatingHandler
     {
         public IDictionary<string, string> Parameters { get; }
 
